@@ -3,6 +3,8 @@
 
 ### Examples
 
+* relative (with constants)
+
 ```
 C_LONGINT($width;$height)
 FORM GET PROPERTIES("Form1";$width;$height)
@@ -10,8 +12,23 @@ FORM GET PROPERTIES("Form1";$width;$height)
 $screen:=Current_screen 
 
 $w:=Open form window("Form1";Plain form window;\
-On_screen ($width;$height;$screen;Horizontally centered);\
-On_screen ($width;$height;$screen;Vertically centered))
+	On_screen ($width;$height;$screen;Horizontally centered);\
+	On_screen ($width;$height;$screen;Vertically centered))
+
+DIALOG("Form1")
+```
+
+* with coordinates
+
+```
+C_LONGINT($width;$height)
+FORM GET PROPERTIES("Form1";$width;$height)
+
+$screen:=Current_screen 
+
+$w:=Open form window("Form1";Plain form window;\
+	On_screen (100;-1;$screen);\
+	On_screen (-1;100;$screen))
 
 DIALOG("Form1")
 ```
@@ -60,6 +77,9 @@ $0:=Choose(Count screens=1;Menu bar screen;Find in array($intersection;Max($inte
 C_LONGINT($1;$width;$2;$height;$3;$screen;$4;$selector)
 C_LONGINT($0;$value)
 
+C_LONGINT($left;$top;$right;$bottom)
+SCREEN COORDINATES($left;$top;$right;$bottom;$screen)
+
 $params:=Count parameters
 
 Case of 
@@ -69,9 +89,6 @@ Case of
 		$height:=$2
 		$screen:=$3
 		$selector:=$4
-		
-		C_LONGINT($left;$top;$right;$bottom)
-		SCREEN COORDINATES($left;$top;$right;$bottom;$screen)
 		
 		Case of 
 			: ($selector=Vertically centered)
