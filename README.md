@@ -3,7 +3,7 @@
 
 ### Examples
 
-* relative (with constants)
+* with constants
 
 ```
 C_LONGINT($width;$height)
